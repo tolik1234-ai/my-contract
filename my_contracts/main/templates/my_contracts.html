@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Contracts · my_contracts{% endblock %}
+
+{% block extra_styles %}
+.contract-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.contract-table th,
+.contract-table td {
+    padding: 16px 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contract-table th {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+}
+
+.contract-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.contract-table tbody tr:hover {
+    background: rgba(79, 140, 255, 0.1);
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(15, 22, 34, 0.7);
+    border: 1px solid rgba(79, 140, 255, 0.25);
+    font-size: 0.85rem;
+}
+
+.contract-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.contract-actions a {
+    padding: 8px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(79, 140, 255, 0.25);
+    font-size: 0.85rem;
+    color: var(--accent);
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.contract-actions a:hover {
+    border-color: rgba(141, 255, 233, 0.4);
+    color: var(--text-primary);
+}
+
+.contract-notes {
+    margin-top: 16px;
+    padding: 18px 22px;
+    border-radius: 18px;
+    border: 1px dashed rgba(79, 140, 255, 0.3);
+    background: rgba(16, 24, 38, 0.75);
+    color: var(--text-secondary);
+}
+{% endblock %}
+
+{% block main_content %}
+<div class="card">
+    <div class="section-header">
+        <h2>Contracts overview</h2>
+        <a href="#">create new</a>
+    </div>
+    <table class="contract-table" aria-describedby="contracts-summary">
+        <thead>
+            <tr>
+                <th scope="col">Contract</th>
+                <th scope="col">Network</th>
+                <th scope="col">Status</th>
+                <th scope="col">Next action</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="contract-1">
+                <td>Treasury 2024</td>
+                <td>Polygon</td>
+                <td><span class="status-pill">Live</span></td>
+                <td>Rollover audit · May 2024</td>
+                <td>
+                    <div class="contract-actions">
+                        <a href="#">Details</a>
+                        <a href="#">Manage</a>
+                    </div>
+                </td>
+            </tr>
+            <tr id="contract-2">
+                <td>Rewards pool</td>
+                <td>Ethereum</td>
+                <td><span class="status-pill">Pending</span></td>
+                <td>Multisig approval · Mar 2024</td>
+                <td>
+                    <div class="contract-actions">
+                        <a href="#">Details</a>
+                        <a href="#">Approve</a>
+                    </div>
+                </td>
+            </tr>
+            <tr id="contract-3">
+                <td>NFT marketplace</td>
+                <td>Arbitrum</td>
+                <td><span class="status-pill">In review</span></td>
+                <td>Audit feedback · Apr 2024</td>
+                <td>
+                    <div class="contract-actions">
+                        <a href="#">Details</a>
+                        <a href="#">Edit</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="contract-notes" id="contracts-summary">
+        <strong>Need a refresh?</strong> Schedule yearly deployments with automated reminders, connect new signers, and export compliance packages directly from each contract row.
+    </div>
+</div>
+{% endblock %}
