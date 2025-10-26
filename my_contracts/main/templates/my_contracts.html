@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Contracts · my_contracts{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'main/css/contracts.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="card contracts-summary">
+    <div class="section-header">
+        <h2>Contracts overview</h2>
+        <a href="#">create new</a>
+    </div>
+    <table class="contract-table" aria-describedby="contracts-summary">
+        <thead>
+            <tr>
+                <th scope="col">Contract</th>
+                <th scope="col">Network</th>
+                <th scope="col">Status</th>
+                <th scope="col">Next action</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="contract-1">
+                <td>Treasury 2024</td>
+                <td>Polygon</td>
+                <td><span class="status-pill status-pill--live">Live</span></td>
+                <td>Rollover audit · May 2024</td>
+                <td>
+                    <div class="contract-actions">
+                        <a href="#">Details</a>
+                        <a href="#">Manage</a>
+                    </div>
+                </td>
+            </tr>
+            <tr id="contract-2">
+                <td>Rewards pool</td>
+                <td>Ethereum</td>
+                <td><span class="status-pill status-pill--pending">Pending</span></td>
+                <td>Multisig approval · Mar 2024</td>
+                <td>
+                    <div class="contract-actions">
+                        <a href="#">Details</a>
+                        <a href="#">Approve</a>
+                    </div>
+                </td>
+            </tr>
+            <tr id="contract-3">
+                <td>NFT marketplace</td>
+                <td>Arbitrum</td>
+                <td><span class="status-pill status-pill--review">In review</span></td>
+                <td>Audit feedback · Apr 2024</td>
+                <td>
+                    <div class="contract-actions">
+                        <a href="#">Details</a>
+                        <a href="#">Edit</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="contract-notes" id="contracts-summary">
+        <strong>Need a refresh?</strong> Schedule yearly deployments with automated reminders, connect new signers, and export compliance packages directly from each contract row.
+    </div>
+</div>
+{% endblock %}

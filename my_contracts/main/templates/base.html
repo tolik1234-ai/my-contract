@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}my_contracts · Dashboard{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
+    {% block extra_styles %}{% endblock %}
+</head>
+<body>
+    <div class="background-layers" aria-hidden="true">
+        <div class="background-layers__orb background-layers__orb--a"></div>
+        <div class="background-layers__orb background-layers__orb--b"></div>
+        <div class="background-layers__orb background-layers__orb--c"></div>
+    </div>
+    <div class="app-shell">
+        <header class="top-bar">
+            <div class="brand">my_contracts</div>
+            <nav>
+                <a href="{% url 'home' %}" class="nav-link{% if request.path == '/' %} active{% endif %}">Home</a>
+                <a href="{% url 'updates' %}" class="nav-link{% if request.path == '/updates/' %} active{% endif %}">Updates</a>
+                <a href="{% url 'docs' %}" class="nav-link{% if request.path == '/docs/' %} active{% endif %}">Docs</a>
+                <a href="{% url 'my_contacts' %}" class="nav-link{% if request.path == '/my-contacts/' %} active{% endif %}">Contracts</a>
+            </nav>
+            <div class="top-bar__actions">
+                <a href="{% url 'register' %}" class="primary-action">Register</a>
+            </div>
+        </header>
+
+        <main class="dashboard">
+            <section class="primary-column">
+                {% block main_content %}{% endblock %}
+            </section>
+            <aside class="sidebar">
+                <button class="connect-wallet" type="button" data-connect-wallet>Connect wallet</button>
+                <div class="wallet-status" data-wallet-status>
+                    <p class="wallet-status__message" data-wallet-message>No wallet connected yet. Use the button above to link a signer.</p>
+                    <p class="wallet-status__address">Signer: <strong data-wallet-status-inline data-wallet-source>0x0000…0000</strong></p>
+                </div>
+
+                <div class="card">
+                    <div class="profile-card">
+                        <div class="profile-avatar" aria-hidden="true"></div>
+                        <div class="profile-info">
+                            <h3>Actor</h3>
+                            <span>Your deployment workspace</span>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <a href="{% url 'profile' %}">Profile</a>
+                        <a href="{% url 'my_contacts' %}">Contracts</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="section-header">
+                        <h2>Contracts list</h2>
+                        <a href="{% url 'my_contacts' %}">view all</a>
+                    </div>
+                    <div class="contract-list">
+                        <a class="contract-item" href="{% url 'my_contacts' %}#contract-1">Treasury 2024</a>
+                        <a class="contract-item" href="{% url 'my_contacts' %}#contract-2">Rewards pool</a>
+                        <a class="contract-item" href="{% url 'my_contacts' %}#contract-3">NFT marketplace</a>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+    <script src="{% static 'main/js/dashboard.js' %}" defer></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

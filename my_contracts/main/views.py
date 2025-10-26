@@ -14,3 +14,6 @@ def my_contacts(request):
 
 def docs(request):
     return render(request, 'docs.html')
+
+def register(request):
+    return render(request, 'register.html')

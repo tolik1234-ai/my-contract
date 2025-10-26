@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Register · my_contracts{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'main/css/auth.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="card auth-card">
+    <div class="section-header">
+        <h2>Create workspace access</h2>
+        <a href="{% url 'home' %}">back home</a>
+    </div>
+    <form class="auth-form" method="post" action="#">
+        {% csrf_token %}
+        <label for="id_full_name">Full name</label>
+        <input id="id_full_name" name="full_name" type="text" placeholder="Satoshi Nakamoto" autocomplete="name" required>
+
+        <label for="id_email">Email</label>
+        <input id="id_email" name="email" type="email" placeholder="ops@mycontracts.dev" autocomplete="email" required>
+
+        <label for="id_wallet">Primary wallet</label>
+        <div class="wallet-input">
+            <input id="id_wallet" name="wallet" type="text" placeholder="0x0000..." autocomplete="off" required>
+            <button type="button" class="wallet-fill" data-fill-wallet>use connected</button>
+        </div>
+        <p class="wallet-hint">Connect your signer from the sidebar, then pull it in here.</p>
+
+        <label for="id_password">Password</label>
+        <input id="id_password" name="password" type="password" placeholder="••••••••" autocomplete="new-password" required>
+
+        <label for="id_password_confirm">Confirm password</label>
+        <input id="id_password_confirm" name="password_confirm" type="password" placeholder="••••••••" autocomplete="new-password" required>
+
+        <button type="submit" class="auth-submit">Register workspace</button>
+    </form>
+    <p class="auth-note">Already have an account? <a href="#">Sign in</a></p>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const fillButton = document.querySelector('[data-fill-wallet]');
+        const walletField = document.querySelector('#id_wallet');
+        const globalStatus = document.querySelector('[data-wallet-source]');
+
+        if (fillButton && walletField) {
+            fillButton.addEventListener('click', () => {
+                if (globalStatus && globalStatus.dataset.fullAddress) {
+                    walletField.value = globalStatus.dataset.fullAddress;
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}
