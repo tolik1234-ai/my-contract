@@ -3,6 +3,13 @@
 {% block title %}Docs · my_contracts{% endblock %}
 
 {% block extra_styles %}
+<<<<<<< HEAD
+<link rel="stylesheet" href="{% static 'main/css/docs.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="card docs-intro">
+=======
 .docs-layout {
     display: grid;
     grid-template-columns: 240px 1fr;
@@ -84,6 +91,7 @@
 
 {% block main_content %}
 <div class="card">
+>>>>>>> main
     <div class="section-header">
         <h2>Documentation hub</h2>
         <a href="https://docs.mycontracts.dev" target="_blank" rel="noopener">full docs</a>
@@ -96,6 +104,10 @@
         <a class="docs-link" href="#getting-started">Getting started</a>
         <a class="docs-link" href="#deployment">Deployment flow</a>
         <a class="docs-link" href="#governance">Governance tools</a>
+<<<<<<< HEAD
+        <a class="docs-link" href="#integration">On-chain integration</a>
+=======
+>>>>>>> main
         <a class="docs-link" href="#security">Security</a>
     </nav>
     <div class="docs-content">
@@ -126,6 +138,19 @@
                 <li>Monitor treasury inflows and off-chain approvals.</li>
             </ul>
         </section>
+<<<<<<< HEAD
+        <section class="docs-section" id="integration">
+            <h2>On-chain integration</h2>
+            <p>We're preparing Django models to persist contract metadata and lifecycle states. Link the dashboard to your contracts by mapping each deployment to a <code>Contract</code> model that stores address, chain ID, ABI, and ownership rules.</p>
+            <ol>
+                <li>Define models that describe contracts, signers, and scheduled actions. Use foreign keys to relate them to Django's <code>User</code> accounts.</li>
+                <li>Sync on-chain events via Celery tasks or cron jobs that query providers such as Alchemy or Infura and update the database.</li>
+                <li>Expose the data in views and APIs so the dashboard pulls live statuses, renders timelines, and triggers alerts when milestones slip.</li>
+            </ol>
+            <p class="docs-callout">Once the models are in place we can hydrate these cards directly from the database, ensuring every widget reflects the canonical contract source.</p>
+        </section>
+=======
+>>>>>>> main
         <section class="docs-section" id="security">
             <h2>Security</h2>
             <p>Security-first workflows ensure that yearly deployments stay compliant and resilient. Enable multi-signature execution, integrate with custodial services, and automate audit reminders.</p>

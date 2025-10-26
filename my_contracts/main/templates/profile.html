@@ -3,6 +3,9 @@
 {% block title %}Profile · my_contracts{% endblock %}
 
 {% block extra_styles %}
+<<<<<<< HEAD
+<link rel="stylesheet" href="{% static 'main/css/profile.css' %}">
+=======
 .profile-header {
     display: flex;
     align-items: center;
@@ -73,6 +76,7 @@
 .activity-item strong {
     font-weight: 600;
 }
+>>>>>>> main
 {% endblock %}
 
 {% block main_content %}
@@ -122,4 +126,19 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+
+<div class="card access-card">
+    <div class="section-header">
+        <h2>Wallet access</h2>
+        <a href="#">manage keys</a>
+    </div>
+    <p>Sync your connected wallet with workspace permissions. Once our account models land you will be able to assign contract roles directly to wallet addresses.</p>
+    <ul class="access-list">
+        <li><span>Primary signer</span> <strong data-wallet-status-inline>0x0000…0000</strong></li>
+        <li><span>Backup</span> <strong>Not linked</strong></li>
+    </ul>
+</div>
+=======
+>>>>>>> main
 {% endblock %}

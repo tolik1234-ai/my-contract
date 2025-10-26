@@ -3,6 +3,13 @@
 {% block title %}Contracts · my_contracts{% endblock %}
 
 {% block extra_styles %}
+<<<<<<< HEAD
+<link rel="stylesheet" href="{% static 'main/css/contracts.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="card contracts-summary">
+=======
 .contract-table {
     width: 100%;
     border-collapse: collapse;
@@ -72,6 +79,7 @@
 
 {% block main_content %}
 <div class="card">
+>>>>>>> main
     <div class="section-header">
         <h2>Contracts overview</h2>
         <a href="#">create new</a>
@@ -90,7 +98,11 @@
             <tr id="contract-1">
                 <td>Treasury 2024</td>
                 <td>Polygon</td>
+<<<<<<< HEAD
+                <td><span class="status-pill status-pill--live">Live</span></td>
+=======
                 <td><span class="status-pill">Live</span></td>
+>>>>>>> main
                 <td>Rollover audit · May 2024</td>
                 <td>
                     <div class="contract-actions">
@@ -102,7 +114,11 @@
             <tr id="contract-2">
                 <td>Rewards pool</td>
                 <td>Ethereum</td>
+<<<<<<< HEAD
+                <td><span class="status-pill status-pill--pending">Pending</span></td>
+=======
                 <td><span class="status-pill">Pending</span></td>
+>>>>>>> main
                 <td>Multisig approval · Mar 2024</td>
                 <td>
                     <div class="contract-actions">
@@ -114,7 +130,11 @@
             <tr id="contract-3">
                 <td>NFT marketplace</td>
                 <td>Arbitrum</td>
+<<<<<<< HEAD
+                <td><span class="status-pill status-pill--review">In review</span></td>
+=======
                 <td><span class="status-pill">In review</span></td>
+>>>>>>> main
                 <td>Audit feedback · Apr 2024</td>
                 <td>
                     <div class="contract-actions">

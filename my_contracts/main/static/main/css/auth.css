@@ -1,0 +1,92 @@
+.auth-card {
+    max-width: 560px;
+    background: linear-gradient(150deg, rgba(8, 14, 24, 0.9), rgba(79, 140, 255, 0.14));
+}
+
+.auth-form {
+    display: grid;
+    gap: 14px;
+}
+
+.auth-form label {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(115, 242, 206, 0.35);
+    background: rgba(8, 14, 24, 0.78);
+    color: var(--text-primary);
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: rgba(115, 242, 206, 0.65);
+    box-shadow: 0 0 0 3px rgba(115, 242, 206, 0.15);
+}
+
+.wallet-input {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+}
+
+.wallet-fill {
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(79, 140, 255, 0.45);
+    background: rgba(79, 140, 255, 0.18);
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+}
+
+.wallet-fill:hover {
+    border-color: rgba(115, 242, 206, 0.6);
+}
+
+.wallet-hint {
+    margin: -6px 0 10px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.auth-submit {
+    margin-top: 6px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    border: none;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background: linear-gradient(135deg, rgba(79, 140, 255, 0.95), rgba(115, 242, 206, 0.95));
+    color: #05070d;
+    cursor: pointer;
+    box-shadow: 0 20px 38px rgba(79, 140, 255, 0.35);
+}
+
+.auth-submit:hover {
+    transform: translateY(-2px);
+}
+
+.auth-note {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.auth-note a {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+@media (max-width: 640px) {
+    .wallet-input {
+        grid-template-columns: 1fr;
+    }
+}
