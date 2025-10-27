@@ -3,60 +3,8 @@
 {% block title %}Updates · my_contracts{% endblock %}
 
 {% block extra_styles %}
-<<<<<<< HEAD
+{% load static %}
 <link rel="stylesheet" href="{% static 'main/css/updates.css' %}">
-=======
-.timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.timeline-entry {
-    position: relative;
-    padding: 20px 24px 20px 36px;
-    border-radius: 18px;
-    border: 1px solid rgba(79, 140, 255, 0.18);
-    background: rgba(16, 24, 38, 0.78);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
-}
-
-.timeline-entry::before {
-    content: "";
-    position: absolute;
-    left: 16px;
-    top: 24px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #4f8cff, #8dffe9);
-    box-shadow: 0 0 0 4px rgba(79, 140, 255, 0.12);
-}
-
-.timeline-entry h3 {
-    margin: 0;
-    font-size: 1.1rem;
-}
-
-.timeline-entry time {
-    display: block;
-    margin: 6px 0 12px;
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-    letter-spacing: 0.04em;
-}
-
-.timeline-entry p {
-    margin: 0;
-    color: var(--text-secondary);
-    line-height: 1.5;
-}
-
-.alert-card {
-    border: 1px solid rgba(141, 255, 233, 0.3);
-    background: linear-gradient(135deg, rgba(141, 255, 233, 0.12), rgba(15, 21, 34, 0.85));
-}
->>>>>>> main
 {% endblock %}
 
 {% block main_content %}
@@ -82,11 +30,7 @@
             <p>Connect Ledger devices directly inside the platform. We now detect staking accounts and allow authorisation for scheduled deployments.</p>
         </article>
         <article class="timeline-entry">
-<<<<<<< HEAD
             <h3>Docs revamp</h3>
-=======
-            <h3>DOCS revamp</h3>
->>>>>>> main
             <time datetime="2024-01-22">January 22, 2024</time>
             <p>We reorganised the knowledge base, added quick-start guides, and published a yearly deployment checklist template for enterprise teams.</p>
         </article>

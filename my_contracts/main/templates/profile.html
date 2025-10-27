@@ -3,80 +3,8 @@
 {% block title %}Profile · my_contracts{% endblock %}
 
 {% block extra_styles %}
-<<<<<<< HEAD
+{% load static %}
 <link rel="stylesheet" href="{% static 'main/css/profile.css' %}">
-=======
-.profile-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 28px;
-    border-radius: 22px;
-    border: 1px solid rgba(141, 255, 233, 0.32);
-    background: linear-gradient(135deg, rgba(141, 255, 233, 0.16), rgba(15, 22, 34, 0.82));
-}
-
-.profile-header .profile-avatar {
-    width: 72px;
-    height: 72px;
-}
-
-.profile-header h1 {
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-.profile-header p {
-    margin: 6px 0 0;
-    color: var(--text-secondary);
-}
-
-.profile-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-}
-
-.stat-card h3 {
-    margin: 0 0 8px;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.stat-value {
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-.activity-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.activity-item {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.activity-item:last-child {
-    border-bottom: none;
-}
-
-.activity-item time {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    letter-spacing: 0.04em;
-}
-
-.activity-item strong {
-    font-weight: 600;
-}
->>>>>>> main
 {% endblock %}
 
 {% block main_content %}
@@ -126,7 +54,6 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 
 <div class="card access-card">
     <div class="section-header">
@@ -139,6 +66,4 @@
         <li><span>Backup</span> <strong>Not linked</strong></li>
     </ul>
 </div>
-=======
->>>>>>> main
 {% endblock %}

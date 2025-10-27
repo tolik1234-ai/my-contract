@@ -3,112 +3,12 @@
 {% block title %}Home · my_contracts{% endblock %}
 
 {% block extra_styles %}
-<<<<<<< HEAD
+{% load static %}
 <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
-=======
-.contract-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-.contract-card {
-    position: relative;
-    padding: 24px;
-    border-radius: 20px;
-    border: 1px solid rgba(79, 140, 255, 0.25);
-    background: linear-gradient(160deg, rgba(79, 140, 255, 0.16), rgba(21, 29, 45, 0.9));
-    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
-    overflow: hidden;
-}
-
-.contract-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    border: 1px solid rgba(141, 255, 233, 0.2);
-    mask: linear-gradient(180deg, rgba(0, 0, 0, 0.2), transparent 70%);
-    pointer-events: none;
-}
-
-.contract-card h3 {
-    margin: 0 0 12px;
-    font-size: 1.2rem;
-}
-
-.contract-card p {
-    margin: 0 0 18px;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-}
-
-.contract-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.contract-meta span {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    border-radius: 999px;
-    background: rgba(15, 22, 34, 0.7);
-}
-
-.hero-card {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    padding: 28px;
-    border-radius: 22px;
-    border: 1px solid var(--card-border);
-    background: linear-gradient(155deg, rgba(141, 255, 233, 0.16), rgba(21, 29, 45, 0.92));
-}
-
-.hero-card h1 {
-    margin: 0;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    line-height: 1.25;
-}
-
-.hero-card p {
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: 1rem;
-    max-width: 640px;
-}
-
-.hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.hero-actions a {
-    padding: 12px 18px;
-    border-radius: 14px;
-    font-weight: 600;
-    border: 1px solid rgba(79, 140, 255, 0.3);
-    background: rgba(15, 22, 34, 0.75);
-    color: var(--accent);
-    transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.hero-actions a:hover {
-    transform: translateY(-2px);
-    border-color: rgba(141, 255, 233, 0.5);
-}
->>>>>>> main
 {% endblock %}
 
 {% block main_content %}
 <div class="hero-card">
-<<<<<<< HEAD
     <span class="hero-card__badge">annual ops interface</span>
     <h1 class="hero-card__title" data-scatter>Deploy and manage annual smart contracts in one dashboard</h1>
     <p class="hero-card__subtitle">Plan, deploy, and monitor long-horizon blockchain agreements with streamlined tooling. my_contracts keeps your yearly release schedule organised and secure.</p>
@@ -119,22 +19,10 @@
 </div>
 
 <div class="card contract-panel">
-=======
-    <h1>Deploy and manage annual smart contracts in one dashboard</h1>
-    <p>Plan, deploy and monitor long-term blockchain agreements with streamlined tooling. my_contracts keeps your yearly release schedule organised and secure.</p>
-    <div class="hero-actions">
-        <a href="{% url 'my_contacts' %}">View contracts</a>
-        <a href="{% url 'docs' %}">Read the docs</a>
-    </div>
-</div>
-
-<div class="card">
->>>>>>> main
     <div class="section-header">
         <h2>Active deployments</h2>
         <a href="{% url 'my_contacts' %}">manage</a>
     </div>
-<<<<<<< HEAD
     <div class="contract-carousel-wrap" data-scroll-container>
         <button class="carousel-control carousel-control--prev" type="button" aria-label="Scroll contracts left" data-scroll-prev>‹</button>
         <div class="contract-carousel" data-scroll-track>
@@ -188,33 +76,6 @@
             </article>
         </div>
         <button class="carousel-control carousel-control--next" type="button" aria-label="Scroll contracts right" data-scroll-next>›</button>
-=======
-    <div class="contract-grid">
-        <div class="contract-card" id="contract-card-1">
-            <h3>Contract 1</h3>
-            <p>Funding vault for annual treasury disbursement and governance control.</p>
-            <div class="contract-meta">
-                <span>Deployed · Jan 2024</span>
-                <span>Polygon</span>
-            </div>
-        </div>
-        <div class="contract-card" id="contract-card-2">
-            <h3>Contract 2</h3>
-            <p>Reward distribution logic delivering quarterly payouts to loyal holders.</p>
-            <div class="contract-meta">
-                <span>Pending · Mar 2024</span>
-                <span>Ethereum</span>
-            </div>
-        </div>
-        <div class="contract-card" id="contract-card-3">
-            <h3>Contract 3</h3>
-            <p>Access control and compliance layer for partner integrations and audits.</p>
-            <div class="contract-meta">
-                <span>In review · Apr 2024</span>
-                <span>Arbitrum</span>
-            </div>
-        </div>
->>>>>>> main
     </div>
 </div>
 {% endblock %}

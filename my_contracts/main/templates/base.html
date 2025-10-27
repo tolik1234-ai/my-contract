@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 {% load static %}
-=======
->>>>>>> main
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,17 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
-    {% block extra_styles %}{% endblock %}
-</head>
-<body>
-    <div class="background-layers" aria-hidden="true">
-        <div class="background-layers__orb background-layers__orb--a"></div>
-        <div class="background-layers__orb background-layers__orb--b"></div>
-        <div class="background-layers__orb background-layers__orb--c"></div>
-    </div>
-=======
     <style>
         :root {
             color-scheme: dark;
@@ -265,7 +251,6 @@
     </style>
 </head>
 <body>
->>>>>>> main
     <div class="app-shell">
         <header class="top-bar">
             <div class="brand">my_contracts</div>
@@ -273,15 +258,11 @@
                 <a href="{% url 'home' %}" class="nav-link{% if request.path == '/' %} active{% endif %}">Home</a>
                 <a href="{% url 'updates' %}" class="nav-link{% if request.path == '/updates/' %} active{% endif %}">Updates</a>
                 <a href="{% url 'docs' %}" class="nav-link{% if request.path == '/docs/' %} active{% endif %}">Docs</a>
-<<<<<<< HEAD
                 <a href="{% url 'my_contacts' %}" class="nav-link{% if request.path == '/my-contacts/' %} active{% endif %}">Contracts</a>
             </nav>
             <div class="top-bar__actions">
                 <a href="{% url 'register' %}" class="primary-action">Register</a>
             </div>
-=======
-            </nav>
->>>>>>> main
         </header>
 
         <main class="dashboard">
@@ -289,15 +270,11 @@
                 {% block main_content %}{% endblock %}
             </section>
             <aside class="sidebar">
-<<<<<<< HEAD
                 <button class="connect-wallet" type="button" data-connect-wallet>Connect wallet</button>
                 <div class="wallet-status" data-wallet-status>
                     <p class="wallet-status__message" data-wallet-message>No wallet connected yet. Use the button above to link a signer.</p>
                     <p class="wallet-status__address">Signer: <strong data-wallet-status-inline data-wallet-source>0x0000…0000</strong></p>
                 </div>
-=======
-                <button class="connect-wallet">Connect wallet</button>
->>>>>>> main
 
                 <div class="card">
                     <div class="profile-card">
@@ -327,10 +304,7 @@
             </aside>
         </main>
     </div>
-<<<<<<< HEAD
     <script src="{% static 'main/js/dashboard.js' %}" defer></script>
     {% block extra_scripts %}{% endblock %}
-=======
->>>>>>> main
 </body>
 </html>

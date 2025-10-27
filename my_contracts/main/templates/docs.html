@@ -3,95 +3,12 @@
 {% block title %}Docs · my_contracts{% endblock %}
 
 {% block extra_styles %}
-<<<<<<< HEAD
+{% load static %}
 <link rel="stylesheet" href="{% static 'main/css/docs.css' %}">
 {% endblock %}
 
 {% block main_content %}
 <div class="card docs-intro">
-=======
-.docs-layout {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 24px;
-}
-
-.docs-nav {
-    position: sticky;
-    top: 32px;
-    align-self: start;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.docs-link {
-    padding: 12px 16px;
-    border-radius: 14px;
-    border: 1px solid rgba(79, 140, 255, 0.18);
-    background: rgba(15, 22, 34, 0.7);
-    color: var(--text-secondary);
-    transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-.docs-link:hover,
-.docs-link:focus {
-    border-color: rgba(141, 255, 233, 0.4);
-    color: var(--text-primary);
-}
-
-.docs-content {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.docs-section {
-    padding: 24px 28px;
-    border-radius: 20px;
-    border: 1px solid rgba(79, 140, 255, 0.18);
-    background: rgba(16, 24, 38, 0.85);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
-}
-
-.docs-section h2 {
-    margin: 0 0 12px;
-    font-size: 1.3rem;
-}
-
-.docs-section p {
-    margin: 0 0 12px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-}
-
-.docs-section ul {
-    margin: 0;
-    padding-left: 18px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-}
-
-@media (max-width: 960px) {
-    .docs-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .docs-nav {
-        position: static;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .docs-link {
-        flex: 1 1 45%;
-    }
-}
-{% endblock %}
-
-{% block main_content %}
-<div class="card">
->>>>>>> main
     <div class="section-header">
         <h2>Documentation hub</h2>
         <a href="https://docs.mycontracts.dev" target="_blank" rel="noopener">full docs</a>
@@ -104,10 +21,7 @@
         <a class="docs-link" href="#getting-started">Getting started</a>
         <a class="docs-link" href="#deployment">Deployment flow</a>
         <a class="docs-link" href="#governance">Governance tools</a>
-<<<<<<< HEAD
         <a class="docs-link" href="#integration">On-chain integration</a>
-=======
->>>>>>> main
         <a class="docs-link" href="#security">Security</a>
     </nav>
     <div class="docs-content">
