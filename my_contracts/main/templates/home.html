@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Home · my_contracts{% endblock %}
+
+{% block extra_styles %}
+{% load static %}
+
+    <span class="hero-card__badge">annual ops interface</span>
+    <h1 class="hero-card__title" data-scatter>Deploy and manage annual smart contracts in one dashboard</h1>
+    <p class="hero-card__subtitle">Plan, deploy, and monitor long-horizon blockchain agreements with streamlined tooling. my_contracts keeps your yearly release schedule organised and secure.</p>
+    <div class="hero-actions">
+        <a class="hero-btn hero-btn--solid" href="{% url 'my_contacts' %}">View contracts</a>
+        <a class="hero-btn hero-btn--ghost" href="{% url 'docs' %}">Read the docs</a>
+    </div>
+</div>
+
+<div class="card contract-panel">
+    <h1>Deploy and manage annual smart contracts in one dashboard</h1>
+    <p>Plan, deploy and monitor long-term blockchain agreements with streamlined tooling. my_contracts keeps your yearly release schedule organised and secure.</p>
+    <div class="hero-actions">
+        <a href="{% url 'my_contacts' %}">View contracts</a>
+        <a href="{% url 'docs' %}">Read the docs</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="section-header">
+        <h2>Active deployments</h2>
+        <a href="{% url 'my_contacts' %}">manage</a>
+    </div>
+
+    <div class="contract-carousel-wrap" data-scroll-container>
+        <button class="carousel-control carousel-control--prev" type="button" aria-label="Scroll contracts left" data-scroll-prev>‹</button>
+        <div class="contract-carousel" data-scroll-track>
+            <article class="contract-card" id="contract-card-1">
+                <header class="contract-card__header">
+                    <span class="contract-card__network">Polygon</span>
+                    <span class="contract-card__status contract-card__status--live">Deployed · Jan 2024</span>
+                </header>
+                <h3>Treasury anchor</h3>
+                <p>Funding vault governing annual treasury disbursement with multi-sig approvals.</p>
+                <footer class="contract-card__footer">
+                    <span>12 guardians</span>
+                    <a href="{% url 'my_contacts' %}#contract-1">Open</a>
+                </footer>
+            </article>
+            <article class="contract-card" id="contract-card-2">
+                <header class="contract-card__header">
+                    <span class="contract-card__network">Ethereum</span>
+                    <span class="contract-card__status contract-card__status--pending">Pending · Mar 2024</span>
+                </header>
+                <h3>Rewards pool</h3>
+                <p>Distribution logic delivering quarterly payouts to community stakeholders.</p>
+                <footer class="contract-card__footer">
+                    <span>Queued for audit</span>
+                    <a href="{% url 'my_contacts' %}#contract-2">Review</a>
+                </footer>
+            </article>
+            <article class="contract-card" id="contract-card-3">
+                <header class="contract-card__header">
+                    <span class="contract-card__network">Arbitrum</span>
+                    <span class="contract-card__status contract-card__status--review">In review · Apr 2024</span>
+                </header>
+                <h3>Compliance layer</h3>
+                <p>Access control stack for partners with automated reporting and throttles.</p>
+                <footer class="contract-card__footer">
+                    <span>3 pending comments</span>
+                    <a href="{% url 'my_contacts' %}#contract-3">Inspect</a>
+                </footer>
+            </article>
+            <article class="contract-card" id="contract-card-4">
+                <header class="contract-card__header">
+                    <span class="contract-card__network">Base</span>
+                    <span class="contract-card__status contract-card__status--draft">Drafting · Q2 2024</span>
+                </header>
+                <h3>Membership access</h3>
+                <p>Token-gated access contract with rotating annual entitlements for members.</p>
+                <footer class="contract-card__footer">
+                    <span>Template loaded</span>
+                    <a href="{% url 'my_contacts' %}">Configure</a>
+                </footer>
+            </article>
+        </div>
+        <button class="carousel-control carousel-control--next" type="button" aria-label="Scroll contracts right" data-scroll-next>›</button>
+
+    <div class="contract-grid">
+        <div class="contract-card" id="contract-card-1">
+            <h3>Contract 1</h3>
+            <p>Funding vault for annual treasury disbursement and governance control.</p>
+            <div class="contract-meta">
+                <span>Deployed · Jan 2024</span>
+                <span>Polygon</span>
+            </div>
+        </div>
+        <div class="contract-card" id="contract-card-2">
+            <h3>Contract 2</h3>
+            <p>Reward distribution logic delivering quarterly payouts to loyal holders.</p>
+            <div class="contract-meta">
+                <span>Pending · Mar 2024</span>
+                <span>Ethereum</span>
+            </div>
+        </div>
+        <div class="contract-card" id="contract-card-3">
+            <h3>Contract 3</h3>
+            <p>Access control and compliance layer for partner integrations and audits.</p>
+            <div class="contract-meta">
+                <span>In review · Apr 2024</span>
+                <span>Arbitrum</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

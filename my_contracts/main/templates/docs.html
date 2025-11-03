@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}Docs · my_contracts{% endblock %}
+
+{% block extra_styles %}
+<<<<<<< HEAD
+<link rel="stylesheet" href="{% static 'main/css/docs.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="card docs-intro">
+=======
+.docs-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 24px;
+}
+
+.docs-nav {
+    position: sticky;
+    top: 32px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.docs-link {
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(79, 140, 255, 0.18);
+    background: rgba(15, 22, 34, 0.7);
+    color: var(--text-secondary);
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.docs-link:hover,
+.docs-link:focus {
+    border-color: rgba(141, 255, 233, 0.4);
+    color: var(--text-primary);
+}
+
+.docs-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.docs-section {
+    padding: 24px 28px;
+    border-radius: 20px;
+    border: 1px solid rgba(79, 140, 255, 0.18);
+    background: rgba(16, 24, 38, 0.85);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
+}
+
+.docs-section h2 {
+    margin: 0 0 12px;
+    font-size: 1.3rem;
+}
+
+.docs-section p {
+    margin: 0 0 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.docs-section ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+@media (max-width: 960px) {
+    .docs-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .docs-nav {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .docs-link {
+        flex: 1 1 45%;
+    }
+}
+{% endblock %}
+
+{% block main_content %}
+<div class="card">
+>>>>>>> main
+    <div class="section-header">
+        <h2>Documentation hub</h2>
+        <a href="https://docs.mycontracts.dev" target="_blank" rel="noopener">full docs</a>
+    </div>
+    <p>Learn how to onboard, deploy, and maintain yearly smart contracts. Our documentation covers integrations, API references, governance workflows, and security guidelines.</p>
+</div>
+
+<div class="docs-layout">
+    <nav class="docs-nav" aria-label="Documentation sections">
+        <a class="docs-link" href="#getting-started">Getting started</a>
+        <a class="docs-link" href="#deployment">Deployment flow</a>
+        <a class="docs-link" href="#governance">Governance tools</a>
+<<<<<<< HEAD
+        <a class="docs-link" href="#integration">On-chain integration</a>
+=======
+>>>>>>> main
+        <a class="docs-link" href="#security">Security</a>
+    </nav>
+    <div class="docs-content">
+        <section class="docs-section" id="getting-started">
+            <h2>Getting started</h2>
+            <p>Connect your wallet, choose the chain for the upcoming year, and configure the organisational profile. Every workspace can store annual deployment templates and schedule release windows.</p>
+            <ul>
+                <li>Create a workspace and invite team members with wallet addresses.</li>
+                <li>Configure permissions for deployers, reviewers, and auditors.</li>
+                <li>Set reminders for annual renewals and pre-launch checklists.</li>
+            </ul>
+        </section>
+        <section class="docs-section" id="deployment">
+            <h2>Deployment flow</h2>
+            <p>Use our guided deployment wizard to load contract bytecode, inject parameters, and verify the contract on-chain. The pipeline supports dry-runs, testnet mirroring, and scheduled execution for yearly go-lives.</p>
+            <ul>
+                <li>Upload ABI or use predefined templates for vaults, treasuries, and vesting.</li>
+                <li>Simulate gas fees and track confirmation progress in real time.</li>
+                <li>Set automatic rollovers with on-chain governance checkpoints.</li>
+            </ul>
+        </section>
+        <section class="docs-section" id="governance">
+            <h2>Governance tools</h2>
+            <p>Manage voting windows, quorum rules, and escalation policies around your annual contracts. Integrate with DAO tooling and export audit logs for compliance reviews.</p>
+            <ul>
+                <li>Trigger emergency stops or staged upgrades.</li>
+                <li>Publish voting proposals and link to Snapshot or Tally.</li>
+                <li>Monitor treasury inflows and off-chain approvals.</li>
+            </ul>
+        </section>
+<<<<<<< HEAD
+        <section class="docs-section" id="integration">
+            <h2>On-chain integration</h2>
+            <p>We're preparing Django models to persist contract metadata and lifecycle states. Link the dashboard to your contracts by mapping each deployment to a <code>Contract</code> model that stores address, chain ID, ABI, and ownership rules.</p>
+            <ol>
+                <li>Define models that describe contracts, signers, and scheduled actions. Use foreign keys to relate them to Django's <code>User</code> accounts.</li>
+                <li>Sync on-chain events via Celery tasks or cron jobs that query providers such as Alchemy or Infura and update the database.</li>
+                <li>Expose the data in views and APIs so the dashboard pulls live statuses, renders timelines, and triggers alerts when milestones slip.</li>
+            </ol>
+            <p class="docs-callout">Once the models are in place we can hydrate these cards directly from the database, ensuring every widget reflects the canonical contract source.</p>
+        </section>
+=======
+>>>>>>> main
+        <section class="docs-section" id="security">
+            <h2>Security</h2>
+            <p>Security-first workflows ensure that yearly deployments stay compliant and resilient. Enable multi-signature execution, integrate with custodial services, and automate audit reminders.</p>
+            <ul>
+                <li>Run pre-deployment audits through supported partners.</li>
+                <li>Enable two-step verification for wallet connections.</li>
+                <li>Track environment variables and secrets for contract scripts.</li>
+            </ul>
+        </section>
+    </div>
+</div>
+{% endblock %}
