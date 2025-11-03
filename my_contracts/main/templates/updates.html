@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Updates · my_contracts{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/updates.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="card alert-card">
+    <h2>Latest release</h2>
+    <p>Version 0.5 brings finished registration, a dynamic profile workspace, and the first pass of the on-site deployment console.</p>
+</div>
+
+<div class="card">
+    <div class="section-header">
+        <h2>Product updates</h2>
+        <a href="https://t.me/my_contracts" target="_blank" rel="noopener">join the channel</a>
+    </div>
+    <div class="timeline">
+        <article class="timeline-entry">
+            <h3>Smart contract deployer UI</h3>
+            <time datetime="2024-03-18">March 18, 2024</time>
+            <p>Добавили форму для запуска деплоя прямо из браузера. Поддерживается чтение манифестов из <code>smart-ultra-deployer</code> и автоматическое формирование файлов параметров.</p>
+        </article>
+        <article class="timeline-entry">
+            <h3>Profile workspace polish</h3>
+            <time datetime="2024-03-12">March 12, 2024</time>
+            <p>Появились карточки статистики, отображение последних деплоев и возможность обновить предпочтительные сети и кошелёк.</p>
+        </article>
+        <article class="timeline-entry">
+            <h3>Account onboarding</h3>
+            <time datetime="2024-03-05">March 05, 2024</time>
+            <p>Регистрация теперь создаёт пользователей в Django, синхронизирует кошелёк и сразу перенаправляет в профиль для дальнейшей настройки.</p>
+        </article>
+    </div>
+</div>
+{% endblock %}

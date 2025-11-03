@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Contracts · my_contracts{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/contracts.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="card contracts-summary">
+    <div class="section-header">
+        <h2>Deploy yearly contracts</h2>
+        <span>Загрузка шаблонов и запуск транзакций в один клик.</span>
+    </div>
+    <p class="summary-intro">Выберите смарт-контракт из каталога, настройте параметры конструктора и запустите деплой прямо из браузера. Панель отслеживает статусы и tx hash для каждого запуска.</p>
+</div>
+
+<div class="deployment-layout">
+    <div class="card deployment-card">
+        <div class="section-header">
+            <h2>New deployment</h2>
+            <a href="https://github.com/tolik1234-ai/smart-ultra-deployer" target="_blank" rel="noopener">view repo</a>
+        </div>
+        <form method="post" class="deployment-form" novalidate>
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="form-field{% if form.contract_template.errors %} has-error{% endif %}" id="contract-chooser">
+                {{ form.contract_template.label_tag }}
+                {{ form.contract_template }}
+                <p class="field-help">Каталог подгружается из <code>external/smart-ultra-deployer</code> или использует демонстрационные шаблоны.</p>
+                {% for error in form.contract_template.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="form-split">
+                <div class="form-field{% if form.target_network.errors %} has-error{% endif %}">
+                    {{ form.target_network.label_tag }}
+                    {{ form.target_network }}
+                    {% for error in form.target_network.errors %}
+                        <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="form-field{% if form.funding_wallet.errors %} has-error{% endif %}">
+                    {{ form.funding_wallet.label_tag }}
+                    <div class="wallet-input">
+                        {{ form.funding_wallet }}
+                        <button type="button" class="wallet-fill" data-fill-wallet>use sidebar signer</button>
+                    </div>
+                    <p class="field-help">Будет использоваться для подписания и оплаты газа.</p>
+                    {% for error in form.funding_wallet.errors %}
+                        <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-field{% if form.constructor_arguments.errors %} has-error{% endif %}">
+                {{ form.constructor_arguments.label_tag }}
+                {{ form.constructor_arguments }}
+                {% if form.constructor_arguments.help_text %}
+                    <p class="field-help">{{ form.constructor_arguments.help_text }}</p>
+                {% endif %}
+                {% for error in form.constructor_arguments.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <button type="submit" class="auth-submit">Launch deployment</button>
+        </form>
+        <p class="deployment-note">После запуска мы генерируем файл параметров и передаём его в CLI скрипты репозитория. Если скрипт не найден — деплой будет отмечен как симуляция.</p>
+    </div>
+
+    <div class="card deployment-feed">
+        <div class="section-header">
+            <h2>Deployment history</h2>
+            <span>{{ deployments|length }} records</span>
+        </div>
+        <div class="deployment-list">
+            {% for deployment in deployments %}
+                <article class="deployment-item" id="contract-{{ deployment.template_id }}">
+                    <header>
+                        <h3>{{ deployment.template_name }}</h3>
+                        <span class="status-pill status-pill--{{ deployment.status }}">{{ deployment.get_status_display }}</span>
+                    </header>
+                    <p class="deployment-meta">Network: {{ deployment.network }} · Wallet: {{ deployment.funding_wallet|default:"—" }}</p>
+                    <p class="deployment-time">{{ deployment.created_at|date:"M d, Y · H:i" }}</p>
+                    <pre class="deployment-args">{{ deployment.pretty_arguments }}</pre>
+                    {% if deployment.transaction_hash %}
+                        <p class="deployment-tx">Tx hash: <code>{{ deployment.transaction_hash }}</code></p>
+                    {% endif %}
+                    {% if deployment.status_message %}
+                        <p class="deployment-message">{{ deployment.status_message }}</p>
+                    {% endif %}
+                    {% if deployment.raw_output %}
+                        <details>
+                            <summary>Execution log</summary>
+                            <pre>{{ deployment.raw_output }}</pre>
+                        </details>
+                    {% endif %}
+                </article>
+            {% empty %}
+                <p class="empty-state">Deployments will show up here. Используйте форму слева, чтобы запланировать первый запуск.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const fillButtons = document.querySelectorAll('[data-fill-wallet]');
+        const globalStatus = document.querySelector('[data-wallet-source]');
+
+        fillButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const input = button.closest('.wallet-input')?.querySelector('input');
+                if (!input) { return; }
+                if (globalStatus && globalStatus.dataset.fullAddress) {
+                    input.value = globalStatus.dataset.fullAddress;
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

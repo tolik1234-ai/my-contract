@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Profile · my_contracts{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="profile-header">
+    <div class="profile-avatar" aria-hidden="true"></div>
+    <div>
+        <h1>{{ request.user.profile.display_name|default:request.user.get_full_name|default:request.user.email }}</h1>
+        <p>Workspace operator · {{ request.user.date_joined|date:"F j, Y" }}</p>
+    </div>
+</div>
+
+<div class="profile-grid">
+    <div class="card stat-card">
+        <h3>Deployed contracts</h3>
+        <div class="stat-value">{{ request.user.deployments.count }}</div>
+        <p>Across Ethereum, Polygon, Arbitrum, Base and more networks.</p>
+    </div>
+    <div class="card stat-card">
+        <h3>Most active network</h3>
+        <div class="stat-value">{{ request.user.profile.preferred_network|default:"—" }}</div>
+        <p>Определяется по выбранному профилю и будущим деплоям.</p>
+    </div>
+    <div class="card stat-card">
+        <h3>Wallet link</h3>
+        {% if request.user.profile.wallet_address %}
+            <div class="stat-value">{{ request.user.profile.wallet_address|slice:":6" }}…{{ request.user.profile.wallet_address|slice:"-4:" }}</div>
+            <p>Синхронизирован с интерфейсом кошелька.</p>
+        {% else %}
+            <div class="stat-value">Not linked</div>
+            <p>Подключите кошелёк и сохраните адрес в профиле.</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="profile-layout">
+    <div class="card">
+        <div class="section-header">
+            <h2>Profile settings</h2>
+            <span>Обновите публичные данные аккаунта</span>
+        </div>
+        <form method="post" class="profile-form" novalidate>
+            {% csrf_token %}
+            <div class="form-split">
+                <div class="form-field">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                </div>
+                <div class="form-field{% if form.display_name.errors %} has-error{% endif %}">
+                    {{ form.display_name.label_tag }}
+                    {{ form.display_name }}
+                    {% if form.display_name.help_text %}
+                        <p class="field-help">{{ form.display_name.help_text }}</p>
+                    {% endif %}
+                    {% for error in form.display_name.errors %}
+                        <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-split">
+                <div class="form-field{% if form.wallet_address.errors %} has-error{% endif %}">
+                    {{ form.wallet_address.label_tag }}
+                    <div class="wallet-input">
+                        {{ form.wallet_address }}
+                        <button type="button" class="wallet-fill" data-fill-wallet>pull from sidebar</button>
+                    </div>
+                    {% if form.wallet_address.help_text %}
+                        <p class="field-help">{{ form.wallet_address.help_text }}</p>
+                    {% endif %}
+                    {% for error in form.wallet_address.errors %}
+                        <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="form-field{% if form.preferred_network.errors %} has-error{% endif %}">
+                    {{ form.preferred_network.label_tag }}
+                    {{ form.preferred_network }}
+                    {% for error in form.preferred_network.errors %}
+                        <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-field{% if form.bio.errors %} has-error{% endif %}">
+                {{ form.bio.label_tag }}
+                {{ form.bio }}
+                {% if form.bio.help_text %}
+                    <p class="field-help">{{ form.bio.help_text }}</p>
+                {% endif %}
+                {% for error in form.bio.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <button type="submit" class="auth-submit">Save profile</button>
+        </form>
+    </div>
+
+    <div class="card activity-card">
+        <div class="section-header">
+            <h2>Recent deployments</h2>
+            <a href="{% url 'contracts' %}">open console</a>
+        </div>
+        <div class="activity-list">
+            {% for deployment in deployments %}
+                <div class="activity-item activity-item--{{ deployment.status }}">
+                    <strong>{{ deployment.template_name }}</strong>
+                    <span class="activity-status">{{ deployment.get_status_display }}</span>
+                    <time datetime="{{ deployment.created_at|date:'c' }}">{{ deployment.created_at|date:"M d, Y · H:i" }}</time>
+                    <p>{{ deployment.status_message|default:"Awaiting execution." }}</p>
+                </div>
+            {% empty %}
+                <p class="empty-state">No deployments yet — создайте первый контракт на вкладке Contracts.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const fillButton = document.querySelector('[data-fill-wallet]');
+        const walletField = document.querySelector('#id_wallet_address');
+        const globalStatus = document.querySelector('[data-wallet-source]');
+
+        if (fillButton && walletField) {
+            fillButton.addEventListener('click', () => {
+                if (globalStatus && globalStatus.dataset.fullAddress) {
+                    walletField.value = globalStatus.dataset.fullAddress;
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

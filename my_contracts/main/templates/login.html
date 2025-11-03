@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Log in · my_contracts{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="card auth-card">
+    <div class="section-header">
+        <h2>Log into workspace</h2>
+        <a href="{% url 'register' %}">need an account?</a>
+    </div>
+    <form class="auth-form" method="post">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div class="form-errors">
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% for field in form %}
+            <div class="form-field{% if field.errors %} has-error{% endif %}">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <p class="field-help">{{ field.help_text }}</p>
+                {% endif %}
+                {% for error in field.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="auth-submit">Sign in</button>
+    </form>
+    <p class="auth-note">We use passwordless wallet approval for critical actions.</p>
+</div>
+{% endblock %}

@@ -1,0 +1,174 @@
+.contracts-summary {
+    background: linear-gradient(150deg, rgba(8, 16, 28, 0.88), rgba(79, 140, 255, 0.12));
+}
+
+.summary-intro {
+    margin-top: 16px;
+    color: var(--text-secondary);
+}
+
+.deployment-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 28px;
+}
+
+.deployment-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.deployment-form {
+    display: grid;
+    gap: 18px;
+}
+
+.deployment-form textarea.form-input {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.form-errors {
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 102, 128, 0.45);
+    background: rgba(72, 12, 24, 0.35);
+}
+
+.form-split {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.deployment-note {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.deployment-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.deployment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.deployment-item {
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(8, 14, 24, 0.7);
+    box-shadow: var(--shadow-card);
+}
+
+.deployment-item header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.deployment-item h3 {
+    margin: 0;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(115, 242, 206, 0.35);
+    background: rgba(115, 242, 206, 0.12);
+    color: var(--accent);
+}
+
+.status-pill--failed {
+    border-color: rgba(255, 102, 128, 0.6);
+    background: rgba(255, 102, 128, 0.16);
+    color: #ff94a8;
+}
+
+.status-pill--simulated {
+    border-color: rgba(79, 140, 255, 0.45);
+    background: rgba(79, 140, 255, 0.16);
+    color: #9ab8ff;
+}
+
+.status-pill--succeeded {
+    border-color: rgba(115, 242, 206, 0.6);
+    background: rgba(115, 242, 206, 0.2);
+    color: var(--accent);
+}
+
+.status-pill--queued {
+    border-color: rgba(255, 184, 77, 0.45);
+    background: rgba(255, 184, 77, 0.16);
+    color: #ffcc7a;
+}
+
+.deployment-meta,
+.deployment-time,
+.deployment-message,
+.deployment-note {
+    color: var(--text-secondary);
+}
+
+.deployment-args {
+    margin: 12px 0;
+    padding: 16px;
+    border-radius: 16px;
+    background: rgba(5, 7, 13, 0.85);
+    border: 1px solid rgba(115, 242, 206, 0.18);
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.82rem;
+    max-height: 220px;
+    overflow: auto;
+}
+
+.deployment-tx code {
+    padding: 4px 8px;
+    border-radius: 8px;
+    background: rgba(79, 140, 255, 0.18);
+}
+
+.deployment-item details {
+    margin-top: 10px;
+}
+
+.deployment-item details pre {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    max-height: 200px;
+    overflow: auto;
+}
+
+@media (max-width: 960px) {
+    .deployment-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .deployment-item header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .deployment-form .wallet-input {
+        grid-template-columns: 1fr;
+    }
+}
