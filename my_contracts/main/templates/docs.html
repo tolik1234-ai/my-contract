@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Docs · my_contracts{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/docs.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="card docs-intro">
+    <div class="section-header">
+        <h2>Documentation hub</h2>
+        <a href="https://docs.mycontracts.dev" target="_blank" rel="noopener">full docs</a>
+    </div>
+    <p>Learn how to onboard, deploy, and maintain yearly smart contracts. Our documentation covers integrations, API references, governance workflows, and security guidelines.</p>
+</div>
+
+<div class="docs-layout">
+    <nav class="docs-nav" aria-label="Documentation sections">
+        <a class="docs-link" href="#getting-started">Getting started</a>
+        <a class="docs-link" href="#deployment">Deployment flow</a>
+        <a class="docs-link" href="#governance">Governance tools</a>
+        <a class="docs-link" href="#integration">On-chain integration</a>
+        <a class="docs-link" href="#repository">Repository setup</a>
+        <a class="docs-link" href="#security">Security</a>
+    </nav>
+    <div class="docs-content">
+        <section class="docs-section" id="getting-started">
+            <h2>Getting started</h2>
+            <p>Connect your wallet, choose the chain for the upcoming year, and configure the organisational profile. Every workspace can store annual deployment templates and schedule release windows.</p>
+            <ul>
+                <li>Create a workspace and invite team members with wallet addresses.</li>
+                <li>Configure permissions for deployers, reviewers, and auditors.</li>
+                <li>Set reminders for annual renewals and pre-launch checklists.</li>
+            </ul>
+        </section>
+        <section class="docs-section" id="deployment">
+            <h2>Deployment flow</h2>
+            <p>Use our guided deployment wizard to load contract bytecode, inject parameters, and verify the contract on-chain. The pipeline supports dry-runs, testnet mirroring, and scheduled execution for yearly go-lives.</p>
+            <ul>
+                <li>Upload ABI or use predefined templates for vaults, treasuries, and vesting.</li>
+                <li>Simulate gas fees and track confirmation progress in real time.</li>
+                <li>Set automatic rollovers with on-chain governance checkpoints.</li>
+            </ul>
+            <p class="docs-callout">Фронтенд подключает <strong>RainbowKit</strong> стиль подключения через <code>wagmi</code> и <code>ethers.js</code>, поэтому DeployManager.sol вызывается прямо из браузера, а результаты фиксируются в Django модели <code>ContractDeployment</code>.</p>
+        </section>
+        <section class="docs-section" id="governance">
+            <h2>Governance tools</h2>
+            <p>Manage voting windows, quorum rules, and escalation policies around your annual contracts. Integrate with DAO tooling and export audit logs for compliance reviews.</p>
+            <ul>
+                <li>Trigger emergency stops or staged upgrades.</li>
+                <li>Publish voting proposals and link to Snapshot or Tally.</li>
+                <li>Monitor treasury inflows and off-chain approvals.</li>
+            </ul>
+        </section>
+        <section class="docs-section" id="integration">
+            <h2>On-chain integration</h2>
+            <p>We're preparing Django models to persist contract metadata and lifecycle states. Link the dashboard to your contracts by mapping each deployment to a <code>Contract</code> model that stores address, chain ID, ABI, and ownership rules.</p>
+            <ol>
+                <li>Define models that describe contracts, signers, and scheduled actions. Use foreign keys to relate them to Django's <code>User</code> accounts.</li>
+                <li>Sync on-chain events via Celery tasks or cron jobs that query providers such as Alchemy or Infura and update the database.</li>
+                <li>Expose the data in views and APIs so the dashboard pulls live statuses, renders timelines, and triggers alerts when milestones slip.</li>
+            </ol>
+            <p class="docs-callout">Once the models are in place we can hydrate these cards directly from the database, ensuring every widget reflects the canonical contract source.</p>
+        </section>
+        <section class="docs-section" id="repository">
+            <h2>Repository setup</h2>
+            <p>The deployment form scans <code>external/smart-ultra-deployer</code> for manifests. Clone the repository side-by-side with this Django project:</p>
+            <pre><code>mkdir -p external
+cd external
+git clone https://github.com/tolik1234-ai/smart-ultra-deployer.git
+            </code></pre>
+            <p>Каждый найденный <code>manifest.json</code> попадает в каталог шаблонов. Скрипт <code>deploy.py</code> или <code>scripts/deploy_contract.py</code> запускается автоматически; логи и tx hash отображаются в интерфейсе.</p>
+            <p>Если репозиторий отсутствует, приложение использует демонстрационные шаблоны и отмечает деплои как симуляции.</p>
+        </section>
+        <section class="docs-section" id="security">
+            <h2>Security</h2>
+            <p>Security-first workflows ensure that yearly deployments stay compliant and resilient. Enable multi-signature execution, integrate with custodial services, and automate audit reminders.</p>
+            <ul>
+                <li>Run pre-deployment audits through supported partners.</li>
+                <li>Enable two-step verification for wallet connections.</li>
+                <li>Track environment variables and secrets for contract scripts.</li>
+            </ul>
+        </section>
+    </div>
+</div>
+{% endblock %}

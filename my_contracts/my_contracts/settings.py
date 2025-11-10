@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -62,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main.context_processors.contract_sidebar',
             ],
         },
     },
@@ -121,3 +123,27 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'profile'
+LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
+
+
+def _manager_entry(slug: str, chain_id: int, default_rpc: str) -> dict:
+    env_slug = slug.upper()
+    return {
+        'chain_id': chain_id,
+        'rpc_url': os.getenv(f'RPC_{env_slug}', default_rpc),
+        'manager': os.getenv(f'DEPLOY_MANAGER_{env_slug}', ''),
+    }
+
+
+DEPLOY_MANAGER_CONFIG = {
+    'ethereum': _manager_entry('ethereum', 1, 'https://rpc.ankr.com/eth'),
+    'polygon': _manager_entry('polygon', 137, 'https://polygon-rpc.com'),
+    'arbitrum': _manager_entry('arbitrum', 42161, 'https://arb1.arbitrum.io/rpc'),
+    'base': _manager_entry('base', 8453, 'https://mainnet.base.org'),
+    'sepolia': _manager_entry('sepolia', 11155111, 'https://rpc.sepolia.org'),
+    'mumbai': _manager_entry('mumbai', 80001, 'https://rpc-mumbai.matic.today'),
+}
+

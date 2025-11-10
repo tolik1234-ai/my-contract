@@ -1,11 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Home · my_contracts{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="hero-card">
+    <span class="hero-card__badge">annual ops interface</span>
+    <h1 class="hero-card__title" data-scatter>Deploy and manage annual smart contracts in one dashboard</h1>
+    <p class="hero-card__subtitle">Plan, deploy, and monitor long-horizon blockchain agreements with streamlined tooling. my_contracts keeps your yearly release schedule organised and secure.</p>
+    <div class="hero-actions">
+        <a class="hero-btn hero-btn--solid" href="{% url 'contracts' %}">Launch deployment</a>
+        <a class="hero-btn hero-btn--ghost" href="{% url 'docs' %}">Read the docs</a>
+    </div>
+</div>
+
+<div class="card contract-panel">
+    <div class="section-header">
+        <h2>Active deployments</h2>
+        <a href="{% url 'contracts' %}">manage</a>
+    </div>
+    <div class="contract-carousel-wrap" data-scroll-container>
+        <button class="carousel-control carousel-control--prev" type="button" aria-label="Scroll contracts left" data-scroll-prev>‹</button>
+        <div class="contract-carousel" data-scroll-track>
+            {% for deployment in latest_deployments %}
+                <article class="contract-card" id="contract-card-{{ forloop.counter }}">
+                    <header class="contract-card__header">
+                        <span class="contract-card__network">{{ deployment.network|default:"Unknown" }}</span>
+                        <span class="contract-card__status contract-card__status--{{ deployment.status }}">{{ deployment.get_status_display }} · {{ deployment.created_at|date:"M Y" }}</span>
+                    </header>
+                    <h3>{{ deployment.template_name }}</h3>
+                    <p>{{ deployment.status_message|default:"Awaiting execution" }}</p>
+                    <footer class="contract-card__footer">
+                        <span>{{ deployment.user.profile.display_name|default:deployment.user.email }}</span>
+                        <a href="{% url 'contracts' %}#contract-{{ deployment.template_id }}">Inspect</a>
+                    </footer>
+                </article>
+            {% empty %}
+                {% for contract in catalog %}
+                    <article class="contract-card" id="contract-card-demo-{{ forloop.counter }}">
+                        <header class="contract-card__header">
+                            {% with networks=contract.default_networks %}
+                                <span class="contract-card__network">{% if networks %}{{ networks.0 }}{% else %}Multi-chain{% endif %}</span>
+                            {% endwith %}
+                            <span class="contract-card__status contract-card__status--draft">Ready template</span>
+                        </header>
+                        <h3>{{ contract.display_name }}</h3>
+                        <p>{{ contract.description|default:"Предустановленный шаблон ежегодного контракта." }}</p>
+                        <footer class="contract-card__footer">
+                            <span>Blueprint</span>
+                            <a href="{% url 'contracts' %}#contract-{{ contract.identifier }}">Configure</a>
+                        </footer>
+                    </article>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <button class="carousel-control carousel-control--next" type="button" aria-label="Scroll contracts right" data-scroll-next>›</button>
+    </div>
+</div>
+
+<div class="card catalog-card">
+    <div class="section-header">
+        <h2>Blueprint library</h2>
+        <span>{{ catalog|length }} ready-to-run templates</span>
+    </div>
+    <div class="catalog-grid">
+        {% for contract in catalog %}
+            <article class="catalog-item">
+                <h3>{{ contract.display_name }}</h3>
+                <p>{{ contract.description|default:"Стандартный шаблон для ежегодного деплоя." }}</p>
+                <div class="catalog-meta">
+                    {% if contract.default_networks %}
+                        <span>Networks: {{ contract.default_networks|join:', ' }}</span>
+                    {% else %}
+                        <span>Networks: custom</span>
+                    {% endif %}
+                    <a href="{% url 'contracts' %}#contract-{{ contract.identifier }}">Use template</a>
+                </div>
+            </article>
+        {% empty %}
+            <p class="empty-state">Добавьте репозиторий smart-ultra-deployer, чтобы увидеть реальные шаблоны.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}Contracts · my_contracts{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/contracts.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="card contracts-summary">
+    <div class="section-header">
+        <h2>Deploy yearly contracts</h2>
+        <span>RainbowKit + wagmi + ethers.js прямо в браузере.</span>
+    </div>
+    <p class="summary-intro">Выберите смарт-контракт из каталога, настройте параметры конструктора и запустите деплой через <strong>DeployManager.sol</strong>. Панель подключается к любому RPC, отслеживает события и сохраняет результат в рабочем пространстве.</p>
+</div>
+
+<div class="deployment-layout">
+    <div class="card deployment-card" data-deployment-console>
+        <div class="console-header">
+            <div>
+                <h2>Deploy from browser</h2>
+                <p class="console-subtitle">Работает с репозиторием <a href="https://github.com/tolik1234-ai/smart-ultra-deployer" target="_blank" rel="noopener">smart-ultra-deployer</a> или с демонстрационными шаблонами.</p>
+            </div>
+            <div class="console-status" data-console-status>
+                <span class="status-dot"></span>
+                <span data-console-account>Wallet not connected</span>
+            </div>
+        </div>
+        <div class="console-grid">
+            <section class="console-column">
+                <h3>Blueprints</h3>
+                <div class="template-search">
+                    <input type="search" placeholder="Search template" data-template-search>
+                </div>
+                <div class="template-list" data-template-list>
+                    <p class="empty-state">Catalog загружается…</p>
+                </div>
+                <div class="network-picker">
+                    <label for="network-select">Target network</label>
+                    <select id="network-select" data-network-select></select>
+                    <p class="network-hint" data-network-hint>Выберите сеть, которую поддерживает DeployManager.</p>
+                </div>
+                <div class="manager-meta" data-manager-meta hidden>
+                    <p>DeployManager: <code data-manager-address></code></p>
+                    <p>RPC endpoint: <span data-network-rpc></span></p>
+                </div>
+            </section>
+            <section class="console-column">
+                <h3>Constructor parameters</h3>
+                <form data-deployment-form>
+                    <div class="parameter-fields" data-parameter-fields>
+                        <p class="empty-state">Выберите шаблон, чтобы настроить параметры.</p>
+                    </div>
+                    <div class="console-actions">
+                        <button type="button" class="ghost" data-simulate>Simulate</button>
+                        <button type="submit" class="primary">Deploy contract</button>
+                    </div>
+                    <p class="console-feedback" data-console-feedback></p>
+                </form>
+                <div class="console-log" data-console-log hidden>
+                    <header>
+                        <h4>Last transaction</h4>
+                        <button type="button" data-clear-log>Clear</button>
+                    </header>
+                    <pre data-log-output></pre>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="card deployment-feed">
+        <div class="section-header">
+            <h2>Deployment history</h2>
+            <span>{{ deployments|length }} records</span>
+        </div>
+        <div class="deployment-list" data-deployment-list>
+            {% for deployment in deployments %}
+                <article class="deployment-item" id="contract-{{ deployment.template_id }}">
+                    <header>
+                        <div>
+                            <h3>{{ deployment.template_name }}</h3>
+                            <span class="deployment-time">{{ deployment.created_at|date:"M d, Y · H:i" }}</span>
+                        </div>
+                        <span class="status-pill status-pill--{{ deployment.status }}">{{ deployment.get_status_display }}</span>
+                    </header>
+                    <p class="deployment-meta">Network: {{ deployment.network }} · Wallet: {{ deployment.funding_wallet|default:"—" }}</p>
+                    {% if deployment.contract_address %}
+                        <p class="deployment-meta">Contract: <code>{{ deployment.contract_address }}</code></p>
+                    {% endif %}
+                    {% if deployment.transaction_hash %}
+                        <p class="deployment-tx">Tx hash: <code>{{ deployment.transaction_hash }}</code></p>
+                    {% endif %}
+                    <pre class="deployment-args">{{ deployment.pretty_arguments }}</pre>
+                    {% if deployment.status_message %}
+                        <p class="deployment-message">{{ deployment.status_message }}</p>
+                    {% endif %}
+                    {% if deployment.raw_output %}
+                        <details>
+                            <summary>Execution log</summary>
+                            <pre>{{ deployment.raw_output }}</pre>
+                        </details>
+                    {% endif %}
+                </article>
+            {% empty %}
+                <p class="empty-state">Deployments will show up here после первого запуска.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+{{ deployment_config|json_script:"deployment-config" }}
+<script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.8.0/dist/es-module-shims.min.js"></script>
+<script type="importmap">
+{
+    "imports": {
+        "ethers": "https://esm.sh/ethers@6.11.1",
+        "viem": "https://esm.sh/viem@1.21.4",
+        "viem/chains": "https://esm.sh/viem@1.21.4/chains",
+        "@wagmi/core": "https://esm.sh/@wagmi/core@1.4.8",
+        "@wagmi/connectors": "https://esm.sh/@wagmi/connectors@1.4.8",
+        "@wagmi/connectors/metaMask": "https://esm.sh/@wagmi/connectors@1.4.8/metaMask",
+        "@wagmi/connectors/walletConnect": "https://esm.sh/@wagmi/connectors@1.4.8/walletConnect",
+        "@wagmi/core/providers/public": "https://esm.sh/@wagmi/core@1.4.8/providers/public",
+        "@rainbow-me/rainbowkit/wallets": "https://esm.sh/@rainbow-me/rainbowkit@2.1.6/wallets?bundle",
+        "@rainbow-me/rainbowkit/colors": "https://esm.sh/@rainbow-me/rainbowkit@2.1.6/colors?bundle"
+    }
+}
+</script>
+<script type="module" src="{% static 'js/deployment-console.js' %}"></script>
+{% endblock %}

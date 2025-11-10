@@ -1,0 +1,417 @@
+.contracts-summary {
+    background: linear-gradient(150deg, rgba(8, 16, 28, 0.88), rgba(79, 140, 255, 0.12));
+}
+
+.summary-intro {
+    margin-top: 16px;
+    color: var(--text-secondary);
+}
+
+.deployment-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 28px;
+}
+
+.deployment-card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.console-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.console-header h2 {
+    margin-bottom: 6px;
+}
+
+.console-subtitle {
+    margin: 0;
+    color: var(--text-tertiary);
+}
+
+.console-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(115, 242, 206, 0.25);
+    background: rgba(12, 20, 30, 0.8);
+    font-size: 0.85rem;
+}
+
+.console-status[data-connected="true"] {
+    border-color: rgba(115, 242, 206, 0.6);
+    background: rgba(12, 32, 24, 0.9);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 120, 120, 0.8);
+    box-shadow: 0 0 12px rgba(255, 120, 120, 0.6);
+}
+
+.console-status[data-connected="true"] .status-dot {
+    background: var(--accent);
+    box-shadow: 0 0 14px rgba(115, 242, 206, 0.7);
+}
+
+.console-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.console-column {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.template-search input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(4, 8, 16, 0.75);
+    color: inherit;
+}
+
+.template-list {
+    display: grid;
+    gap: 12px;
+    max-height: 320px;
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.template-card {
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(10, 14, 24, 0.85);
+    display: grid;
+    gap: 6px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    color: inherit;
+    text-align: left;
+}
+
+.template-card:hover {
+    border-color: rgba(115, 242, 206, 0.45);
+}
+
+.template-card.is-active {
+    border-color: rgba(115, 242, 206, 0.75);
+    background: rgba(10, 24, 24, 0.95);
+    box-shadow: 0 0 24px rgba(115, 242, 206, 0.15);
+}
+
+.template-card h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.template-card p {
+    margin: 0;
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+}
+
+.network-picker {
+    display: grid;
+    gap: 8px;
+}
+
+.network-picker select {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(4, 8, 16, 0.75);
+    color: inherit;
+}
+
+.network-hint {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+}
+
+.manager-meta {
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(8, 16, 26, 0.8);
+    border: 1px dashed rgba(115, 242, 206, 0.3);
+    font-size: 0.82rem;
+    display: grid;
+    gap: 6px;
+}
+
+.manager-meta code {
+    background: rgba(115, 242, 206, 0.12);
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.parameter-fields {
+    display: grid;
+    gap: 14px;
+}
+
+.parameter-field {
+    display: grid;
+    gap: 6px;
+}
+
+.parameter-field label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.parameter-field input,
+.parameter-field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(4, 8, 16, 0.75);
+    color: inherit;
+    font-family: inherit;
+}
+
+.parameter-field textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.parameter-help {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+}
+
+.console-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.console-actions .ghost,
+.console-actions .primary {
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.console-actions .ghost:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.console-actions .primary {
+    border-color: rgba(115, 242, 206, 0.45);
+    background: rgba(115, 242, 206, 0.18);
+}
+
+.console-actions .primary:hover {
+    border-color: rgba(115, 242, 206, 0.75);
+    background: rgba(115, 242, 206, 0.28);
+}
+
+.console-feedback {
+    min-height: 22px;
+    margin: 12px 0 0;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.console-feedback[data-state="error"] {
+    color: #ff94a8;
+}
+
+.console-feedback[data-state="success"] {
+    color: var(--accent);
+}
+
+.console-log {
+    margin-top: 12px;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(6, 8, 16, 0.85);
+    display: grid;
+    gap: 10px;
+}
+
+.console-log header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.console-log button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 6px 10px;
+    color: inherit;
+    cursor: pointer;
+}
+
+.console-log pre {
+    margin: 0;
+    max-height: 200px;
+    overflow: auto;
+    font-size: 0.78rem;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.deployment-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.deployment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.deployment-item {
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(8, 14, 24, 0.7);
+    box-shadow: var(--shadow-card);
+}
+
+.deployment-item header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.deployment-item h3 {
+    margin: 0;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(115, 242, 206, 0.35);
+    background: rgba(115, 242, 206, 0.12);
+    color: var(--accent);
+}
+
+.status-pill--failed {
+    border-color: rgba(255, 102, 128, 0.6);
+    background: rgba(255, 102, 128, 0.16);
+    color: #ff94a8;
+}
+
+.status-pill--simulated {
+    border-color: rgba(79, 140, 255, 0.45);
+    background: rgba(79, 140, 255, 0.16);
+    color: #9ab8ff;
+}
+
+.status-pill--succeeded {
+    border-color: rgba(115, 242, 206, 0.6);
+    background: rgba(115, 242, 206, 0.2);
+    color: var(--accent);
+}
+
+.status-pill--queued {
+    border-color: rgba(255, 184, 77, 0.45);
+    background: rgba(255, 184, 77, 0.16);
+    color: #ffcc7a;
+}
+
+.deployment-meta,
+.deployment-time,
+.deployment-message {
+    color: var(--text-secondary);
+}
+
+.deployment-args {
+    margin: 12px 0;
+    padding: 16px;
+    border-radius: 16px;
+    background: rgba(5, 7, 13, 0.85);
+    border: 1px solid rgba(115, 242, 206, 0.18);
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.82rem;
+    max-height: 220px;
+    overflow: auto;
+}
+
+.deployment-tx code {
+    padding: 4px 8px;
+    border-radius: 8px;
+    background: rgba(79, 140, 255, 0.18);
+}
+
+.deployment-item details {
+    margin-top: 10px;
+}
+
+.deployment-item details pre {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    max-height: 200px;
+    overflow: auto;
+}
+
+@media (max-width: 960px) {
+    .deployment-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .deployment-item header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .console-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .console-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+}
